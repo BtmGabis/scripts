@@ -1,0 +1,5 @@
+•	Conectar no banco via SQLPLUS
+
+Sqlplus /nolog
+
+connect USUARIO/"SENHA "@"INFO DE CONEXÃO" = EXEMPLO: "spul5-prdscan:7550/BVWP_ADM"

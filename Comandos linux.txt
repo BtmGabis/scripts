@@ -1,0 +1,136 @@
+----------------------------------------------------- FORMAS DE LISTAR E NAVEGAR NOS DIRETORIOS
+
+ls : lista os arquivos no diretório atual
+
+ls Documents : Lista os arquivos contidos em Documents, alterara para o diretório desejado
+
+ls -l : para um retorno com um formato de listagem mais longa
+
+ls -t : exibe os arquivos com registrode data e hora
+
+ls -s : ordena os arquivos por tamaho
+
+ls -lSr : ordena os arquivos em, ordem de tamanho do menos para o maior
+
+pwd : para saber em que local do diretório voce está
+
+cd Documents : para dizer que voce deseja entrar no diretório Documents
+
+cd / :move para o diretório raiz do linux, o root
+
+Caminho absoluto: começa no root do sistema de arquivos
+Caminho relativo: começam a partir da sua localização atual
+
+cd .. : retorna para o diretorio anterios ao atual
+
+cd ~: vai para o diretorio home do usuario atual
+
+----------------------------------------------------------Alterando permissão de um arquivo ou propriedade
+
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO = para alterar a permissão de um arquivo
+      (u = usuario; g = grupo; o = outros; a = todos) - escolhe para quem voce quer alterar a permissão
+	  
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO
+				 (+ adicionar permissão; = especifique a permissão exata; - remover permissão)
+				 
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO
+						(r = ler; w = escrever; x = executar)
+						
+EXEMPLO:
+chmod u+x arquivoescolhido.log = neste exemplo estou adicionando a permissão de executar ao usuario que possui o arquivo	
+
+chown : usado para alterar propriedades de arquivos,precisa ser executado como root
+
+chown [PROPRIETÁRIO] ARQUIVO
+
+EXEMPLO:
+chown root hello.sh = estou dizendo que o novo ´proprietario do arquivo é o root 
+
+---------------------------------------------------------Para executar um script ou visualizar arquivos:
+
+./nomedoarquivo : Isso indica que o “comando” deve ser executado a partir do diretório atual
+
+cat nomedoarquivo.extensão = faz com que ele exiba o conteudo do arquivo, recomendado para arquivos pequenos
+
+head nomedoarquivo.extensão = faz com que seja exibido as 10 primeiras linhas
+
+tail nomedoarquivo.extensão = faz com que seja exibido as 10 ultimas linhas
+
+head ou tail -n 5 nomedoarquivo.extensão = faz com que exiba o numeor de linhas digitada apos o -n, neste exemplo irá retornar as 5 priemiras ou 5 ultimas linhsd do arquivo, basta escolher entre head ou tail para executar.
+
+netlab123
+
+---------------------------------------------------------ROOT
+
+su - : é utilizado para logar no usuario root
+
+sudo +algum comando : faz com que voce execute um comando como root sem precisar alterar alguma seção
+
+--------------------------------------------------------Copiar e mover arquivo 
+
+cp caminhoDeOrigemDoArquivo CaminhoDeDestino = faz com que criemaos uma cópia do arquivo no caminho de destino
+
+mv arquivoOrigem.extensão diretorioDeOrigem = com este comando vamos mover o arquivo para o diretório desejado, sendo possivel mover mais de um arquivo de uma vez, basta colocar todos os aquivos após o mv
+
+----------------------------------------------------------Remover arquivos
+
+rm -f arquivo.txt  (remove o arquivo que deu o nome)
+rm -f * (remove tudo de dentro da pasta)
+rm -f log_* (remove todos os arquivos que começa com o nome 'log_')
+
+----------------------------------------------------------GREP
+
+grep = é utilizado para localizar palavras em determinados aquivos
+
+grep 'palavra' arquivoQueDesejaProcurar = este comando vai retornar as linhas que contem a palavra desejada dentro do arquivo apontado
+
+grep '^palvra' arquivoQueDesejaProcurar = vai retornar a linha onde a palavra digitada aparece no começo da linha
+
+grep 'palavra$' arquivoQueDesejaProcurar = vai retornar a linha onde a palavra digitada aparece no final da linha
+
+grep 'r..f' arquivoQueDesejaProcurar = vai retornar todas as palavras iniciadas com R que contenham duas letras no meio e terminem com f. pode ser utilizado com qualquer letra desejada e com qualquer palavra
+
+grep '....' arquivoQueDesejaProcurar = retornar a linha que contenham palavras com pelo menos 4 caracter
+
+grep '[0-9]' arquivoQueDesejaProcurar = vai retornar todas as linhas dentro do arquivo que possuam numeros
+
+grep '[^0-9]' arquivoQueDesejaProcurar = faz com que ele negue os caracteres digitados nos colchetes, assim ele só retorna linhas sem numeros
+
+lista filesystems/diretorios:
+du -hs
+du -hs /u01 (lista espeficificamente apenas o filesystem /u01)
+ 
+entrar no diretorio ou pasta:
+cd /u01
+cd oracle
+ 
+listar conteudo da pasta:
+ll
+ls
+ls -ltrh (lista os arquivos mostrando o tamanho e ordenando por criação)
+ 
+remove arquivo:
+rm -f arquivo.txt  (remove o arquivo que deu o nome)
+rm -f * (remove tudo de dentro da pasta)
+rm -f log_* (remove todos os arquivos que começa com o nome 'log_')
+ 
+mostrar todo o diretorio de pastas onde você esta:
+pwd
+
+Verificar memoria no servidor:
+free -g
+
+Excluir arquivos com mais de 10 ou 30 dias
+
+find . -name '*.aud' -mtime +30 -exec rm -f {} \;
+
+find -type f -mtime +10 -exec rm {} \;
+
+==== limpar arquivo de log (Apagar o conteudo e manter o arquivo)===
+ 
+cat /dev/null>listener.log
+
+
+==== Verificar arquivos com GB em ordem
+
+du -sh * | sort -hr
